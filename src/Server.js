@@ -7,8 +7,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "https://regalia-frontend.vercel.app/add-booking",
-  
+  origin: [
+    "https://regalia-frontend.vercel.app",
+    "https://regalia-backend.vercel.app",
+    "http://localhost:4000"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
