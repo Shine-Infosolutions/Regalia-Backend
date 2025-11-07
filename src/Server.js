@@ -12,7 +12,7 @@ app.use(cors({
     "https://regalia-backend.vercel.app",
     "http://localhost:4000",
     "http://localhost:5173",
-    "https://regalia-frontend-opal.vercel.app"
+    
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
