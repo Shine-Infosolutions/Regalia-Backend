@@ -9,7 +9,7 @@ const app = express();
 app.use(cors({
   origin: [
     "https://regalia-backend.vercel.app",
-    "https://regalia-frontend.vercel.app",
+    "https://regaliafrontend.vercel.app",
     "http://localhost:4000",
     "http://localhost:5173",
     
