@@ -19,7 +19,13 @@ app.use(cors({
 app.use(express.json());
 
 // Database connection
-mongoose.connect(process.env.DB_CONNECTION_STRING)
+mongoose.connect(process.env.DB_CONNECTION_STRING, {
+  serverSelectionTimeoutMS: 30000,
+  socketTimeoutMS: 45000,
+  bufferMaxEntries: 0,
+  maxPoolSize: 10,
+  minPoolSize: 5
+})
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
