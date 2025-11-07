@@ -78,7 +78,10 @@ exports.createBooking = async (req, res) => {
 // @desc    Get all bookings
 exports.getBookings = async (req, res) => {
   try {
-    const bookings = await BanquetBooking.find().sort({ createdAt: -1 });
+    const bookings = await BanquetBooking.find()
+      .sort({ createdAt: -1 })
+      .maxTimeMS(30000)
+      .lean();
     res.status(200).json(bookings);
   } catch (err) {
     console.error("Error fetching bookings:", err.message);
