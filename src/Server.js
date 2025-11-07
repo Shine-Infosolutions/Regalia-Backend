@@ -18,18 +18,24 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Database connection
-mongoose.connect(process.env.DB_CONNECTION_STRING, {
-  serverSelectionTimeoutMS: 30000,
-  socketTimeoutMS: 45000,
-  maxPoolSize: 10,
-  minPoolSize: 5
-})
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
-
 // Disable mongoose buffering
 mongoose.set('bufferCommands', false);
+
+// Database connection function
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.DB_CONNECTION_STRING, {
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
+      maxPoolSize: 10,
+      minPoolSize: 5
+    });
+    console.log('Connected to MongoDB');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  }
+};
 
 // Import routes
 const planLimitRoutes = require('./Route/planLimitRoutes/planLimitRoutes');
@@ -54,8 +60,13 @@ app.use('/api/categories', banquetCategoryRoutes);
 app.use('/api/menus', banquetMenuRoutes);
 app.use('/api/menu-items', menuItemRoutes);
 
-// Start server
+// Start server after DB connection
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const startServer = async () => {
+  await connectDB();
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+};
+
+startServer();
