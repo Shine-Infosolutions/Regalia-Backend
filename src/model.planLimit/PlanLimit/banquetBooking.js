@@ -39,7 +39,7 @@ transactionId: {
   musicCharge: { type: Number, default: 0 },
   hall:{
     type: String,
-    enum: ["Kitty Hall", "Banquet Hall", "Rooftop Hall","Flamingo Rooftop"], 
+    enum: ["Lawn", "Banquet Hall", "Lawn + Banquet Hall"], 
   },
   extraRooms: { type: Number, default: 0 },
 roomPricePerUnit: { type: Number, default: 0 },
