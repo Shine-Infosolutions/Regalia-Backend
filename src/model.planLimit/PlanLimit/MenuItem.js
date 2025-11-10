@@ -7,8 +7,7 @@ const menuItemSchema = new mongoose.Schema({
     trim: true
   },
   category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "BanquetCategory",
+    type: mongoose.Schema.Types.Mixed,
     required: true,
   },
     

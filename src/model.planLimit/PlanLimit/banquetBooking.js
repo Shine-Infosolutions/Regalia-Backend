@@ -39,7 +39,7 @@ transactionId: {
   musicCharge: { type: Number, default: 0 },
   hall:{
     type: String,
-    enum: ["Lawn", "Banquet Hall", "Lawn + Banquet Hall"], 
+    enum: ["Lawn", "Banquet Hall", "Lawn + Banquet Hall", "Rooftop Hall"], 
   },
   extraRooms: { type: Number, default: 0 },
 roomPricePerUnit: { type: Number, default: 0 },
@@ -71,6 +71,7 @@ bookingStatus: {
   default: "Tentative",
 },
   notes: { type: String, trim: true },
+  categorizedMenu: { type: mongoose.Schema.Types.Mixed },
 
   customerRef: { type: String, unique: true },
   
@@ -84,6 +85,7 @@ staffEditCount: { type: Number, default: 0 }, // Count of staff edits to the boo
 status:String,
 changedAt:Date
  }],
+ menuItems: [{ type: mongoose.Schema.Types.Mixed }],
 }, {
   timestamps: true // Automatically adds createdAt and updatedAt
 });
