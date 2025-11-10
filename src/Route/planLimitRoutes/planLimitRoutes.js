@@ -12,7 +12,7 @@ router.get("/get", getAllPlanLimits);
 router.get("/formatted", getFormattedLimits);
 router.get("/:ratePlan/:foodType", getPlanLimit);
 router.post("/", upsertPlanLimit);
-router.post("/:id", upsertPlanLimit);
+router.put("/:id", upsertPlanLimit);
 router.post("/initialize", initializeDefaults);
 
 module.exports = router;
